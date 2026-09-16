@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "BOSS直聘投递助手",
+  "version": "1.5.5",
+  "description": "扫描当前列表中3日内活跃岗位，下滑加载后导出到项目文件夹；也可自动投递。",
+  "permissions": ["storage", "tabs", "scripting", "alarms", "webNavigation"],
+  "host_permissions": [
+    "https://www.zhipin.com/*",
+    "https://*.zhipin.com/*",
+    "http://127.0.0.1:37891/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "BOSS直聘投递助手",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.zhipin.com/*",
+        "https://*.zhipin.com/*"
+      ],
+      "js": ["content/activity.js", "content/list.js", "content/scan.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.zhipin.com/job_detail/*",
+        "https://*.zhipin.com/job_detail/*"
+      ],
+      "js": ["content/activity.js", "content/detail.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

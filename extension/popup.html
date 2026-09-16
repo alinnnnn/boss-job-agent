@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOSS直聘投递助手</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">BOSS 投递助手</div>
+    <div class="status" id="status">未运行</div>
+  </header>
+
+  <label class="field">
+    <span>投递数量</span>
+    <input id="target" type="number" min="1" max="100" value="10" />
+  </label>
+  <label class="field">
+    <span>导出数量</span>
+    <input id="export-count" type="number" min="1" max="200" value="80" />
+  </label>
+  <label class="check">
+    <input id="recent" type="checkbox" checked />
+    只投 3 日内活跃
+  </label>
+  <p class="help">填多少就投/导多少，凑满即停。「网页投递」扫当前列表，「按导出投递」用导出文件里的链接。红色「停止」对三种任务都有效。</p>
+
+  <div class="actions">
+    <button id="start" class="primary">网页投递</button>
+    <button id="from-export" class="from-excel">按导出投递</button>
+  </div>
+  <div class="actions">
+    <button id="export" class="export">扫描导出到项目</button>
+  </div>
+  <div class="actions">
+    <button id="stop" class="danger" disabled>停止当前任务</button>
+  </div>
+
+  <div class="metrics">
+    <div><b id="applied">0</b><span>已沟通</span></div>
+    <div><b id="skipped">0</b><span>已跳过</span></div>
+    <div><b id="failed">0</b><span>失败</span></div>
+  </div>
+
+  <div class="current" id="current"></div>
+  <ul class="logs" id="logs"></ul>
+
+  <script src="popup.js"></script>
+</body>
+</html>
